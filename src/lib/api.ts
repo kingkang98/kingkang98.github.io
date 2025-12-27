@@ -27,6 +27,14 @@ export function getSortedPostsData() {
         // safe serialization: strip dates and custom objects
         const data = JSON.parse(JSON.stringify(matterResult.data));
 
+        // Normalize date to ISO string
+        if (data.date) {
+            const d = new Date(data.date);
+            if (!isNaN(d.getTime())) {
+                data.date = d.toISOString();
+            }
+        }
+
         // Combine the data with the id
         return {
             id,
@@ -51,6 +59,14 @@ export async function getPostData(id: string) {
     const matterResult = matter(fileContents);
 
     const data = JSON.parse(JSON.stringify(matterResult.data));
+
+    // Normalize date to ISO string
+    if (data.date) {
+        const d = new Date(data.date);
+        if (!isNaN(d.getTime())) {
+            data.date = d.toISOString();
+        }
+    }
 
     // Use remark to convert markdown into HTML string
     const processedContent = await remark()
