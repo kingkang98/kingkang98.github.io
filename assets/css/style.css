@@ -1,68 +1,189 @@
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 16px;
-  line-height: 1.5;
-  color: #24292e;
-  background-color: #f6f8fa;
-  margin: 0;
+:root {
+  --primary-color: #2563eb;
+  --secondary-color: #64748b;
+  --bg-color: #ffffff;
+  --text-color: #1e293b;
+  --heading-color: #0f172a;
+  --accent-color: #3b82f6;
+  --border-color: #e2e8f0;
+  --code-bg: #f1f5f9;
+  --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --header-height: 70px;
 }
 
+/* Reset & Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: #f8fafc;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  letter-spacing: -0.025em;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+/* Layout Wrapper */
 .wrapper {
   max-width: 800px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
+/* Header */
 .site-header {
-  border-bottom: 1px solid #e1e4e8;
-  background-color: #fff;
-  padding: 20px 0;
-  margin-bottom: 40px;
+  height: var(--header-height);
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+}
+
+.site-header .wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .site-title {
-  font-size: 26px;
-  font-weight: bold;
-  color: #24292e;
-  text-decoration: none;
-}
-
-.site-nav {
-  float: right;
-  margin-top: 5px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--heading-color);
+  letter-spacing: -0.05em;
 }
 
 .site-nav a {
-  color: #586069;
-  text-decoration: none;
-  margin-left: 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--secondary-color);
+  margin-left: 24px;
 }
 
 .site-nav a:hover {
-  color: #0366d6;
+  color: var(--primary-color);
 }
 
-.post-link {
-  font-size: 24px;
-  color: #0366d6;
-  text-decoration: none;
+/* Post Grid & Cards */
+.post-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 0;
+  list-style: none;
+  margin-top: 2rem;
 }
 
-.post-link:hover {
-  text-decoration: underline;
+.post-card {
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow);
+  border-color: var(--accent-color);
 }
 
 .post-meta {
-  font-size: 14px;
-  color: #586069;
-  display: block;
-  margin-bottom: 5px;
+  font-size: 0.875rem;
+  color: var(--secondary-color);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
+.post-link {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin: 0.5rem 0;
+}
+
+/* Post Content */
+.post-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.post-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-content {
+  background: var(--bg-color);
+  padding: 40px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.post-content img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+blockquote {
+  border-left: 4px solid var(--accent-color);
+  margin: 1.5rem 0;
+  padding-left: 1rem;
+  font-style: italic;
+  color: var(--secondary-color);
+}
+
+pre,
+code {
+  font-family: 'Fira Code', monospace;
+  background-color: var(--code-bg);
+  border-radius: 4px;
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+/* Footer */
 .site-footer {
-  border-top: 1px solid #e1e4e8;
-  padding: 20px 0;
-  margin-top: 40px;
-  color: #586069;
-  font-size: 14px;
+  margin-top: 4rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  color: var(--secondary-color);
+  font-size: 0.9rem;
 }
